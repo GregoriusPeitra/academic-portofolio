@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Research Projects — Gregorius Peitra</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #1a2744;
+      --navy-light: #2d3f6b;
+      --white: #ffffff;
+      --grey-50: #f8f9fa;
+      --grey-100: #e9ecef;
+      --grey-200: #dee2e6;
+      --grey-300: #ced4da;
+      --grey-400: #adb5bd;
+      --grey-500: #6c757d;
+      --grey-600: #495057;
+      --grey-700: #343a40;
+      --accent: #3d5a80;
+      --accent-light: #e8edf4;
+      --status-ongoing: #2563eb;
+      --status-complete: #16a34a;
+      --font-display: 'IBM Plex Serif', Georgia, serif;
+      --font-body: 'IBM Plex Sans', -apple-system, system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+    body { font-family: var(--font-body); color: var(--grey-800); background: var(--white); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    a { color: var(--navy); text-decoration: none; transition: color 0.2s; }
+    a:hover { color: var(--accent); }
+
+    /* SCROLL REVEAL */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--grey-200); }
+    nav .inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    nav .logo { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--navy); letter-spacing: -0.01em; display: flex; align-items: center; gap: 0.6rem; }
+    nav .logo-icon { width: 32px; height: 32px; background: var(--navy); border-radius: 8px; display: grid; place-items: center; flex-shrink: 0; }
+    nav .logo-icon svg { width: 16px; height: 16px; color: white; }
+    nav .logo span { color: var(--grey-400); font-weight: 400; }
+    nav ul { list-style: none; display: flex; gap: 0.25rem; }
+    nav ul a { display: flex; align-items: center; gap: 0.4rem; padding: 0.5rem 0.85rem; font-size: 0.875rem; font-weight: 500; color: var(--grey-600); border-radius: 6px; transition: all 0.15s; }
+    nav ul a svg { width: 14px; height: 14px; opacity: 0.6; }
+    nav ul a:hover, nav ul a.active { color: var(--navy); background: var(--grey-50); }
+    nav ul a:hover svg, nav ul a.active svg { opacity: 1; }
+    nav .mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; color: var(--grey-700); }
+    @media (max-width: 768px) {
+      nav ul { display: none; }
+      nav .mobile-toggle { display: block; }
+      nav ul.open { display: flex; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: white; padding: 1rem; border-bottom: 1px solid var(--grey-200); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+    }
+
+    .page-header { padding: 8rem 2rem 4rem; background: var(--grey-50); border-bottom: 1px solid var(--grey-200); }
+    .page-header .inner { max-width: 900px; margin: 0 auto; }
+    .page-header .eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
+    .page-header .eyebrow svg { width: 12px; height: 12px; }
+    .page-header h1 { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight: 600; color: var(--navy); letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+    .page-header p { font-size: 1.05rem; color: var(--grey-600); max-width: 600px; line-height: 1.8; }
+
+    .section { padding: 4rem 2rem; }
+    .section .inner { max-width: 1000px; margin: 0 auto; }
+
+    /* FILTERS */
+    .filters { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+    .filter-btn { padding: 0.45rem 1rem; border: 1.5px solid var(--grey-200); background: var(--white); color: var(--grey-600); border-radius: 6px; font-size: 0.8rem; font-weight: 500; cursor: pointer; font-family: var(--font-body); transition: all 0.15s; display: flex; align-items: center; gap: 0.4rem; }
+    .filter-btn svg { width: 13px; height: 13px; }
+    .filter-btn:hover { border-color: var(--navy); color: var(--navy); }
+    .filter-btn.active { background: var(--navy); color: white; border-color: var(--navy); }
+
+    /* PROJECT GRID */
+    .project-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    @media (max-width: 700px) { .project-grid { grid-template-columns: 1fr; } }
+
+    .project-card { background: var(--grey-50); border: 1px solid var(--grey-200); border-radius: 12px; padding: 1.75rem; display: flex; flex-direction: column; gap: 1rem; transition: box-shadow 0.25s, border-color 0.25s, transform 0.25s; }
+    .project-card:hover { box-shadow: 0 8px 32px rgba(26,39,68,0.08); border-color: var(--accent); transform: translateY(-2px); }
+    .project-card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
+    .project-card h3 { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; color: var(--navy); line-height: 1.4; display: flex; align-items: flex-start; gap: 0.5rem; }
+    .project-card h3 svg { width: 16px; height: 16px; color: var(--accent); flex-shrink: 0; margin-top: 2px; }
+    .project-status { flex-shrink: 0; padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; display: flex; align-items: center; gap: 0.3rem; }
+    .project-status svg { width: 10px; height: 10px; }
+    .status-ongoing { background: #dbeafe; color: var(--status-ongoing); }
+    .status-complete { background: #dcfce7; color: var(--status-complete); }
+
+    .project-card > p { font-size: 0.875rem; color: var(--grey-600); line-height: 1.7; flex: 1; }
+    .project-meta { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .meta-tag { background: var(--white); border: 1px solid var(--grey-200); color: var(--grey-600); padding: 0.2rem 0.65rem; border-radius: 4px; font-size: 0.75rem; font-weight: 500; display: flex; align-items: center; gap: 0.3rem; transition: border-color 0.15s; }
+    .meta-tag:hover { border-color: var(--accent); }
+    .meta-tag svg { width: 11px; height: 11px; opacity: 0.6; }
+    .meta-tag.method { background: var(--navy); color: white; border-color: var(--navy); }
+    .meta-tag.method svg { opacity: 0.7; }
+
+    .section-divider { height: 1px; background: var(--grey-200); margin: 0 2rem; }
+
+    .subsection-header { margin-bottom: 1.5rem; }
+    .subsection-header h2 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; color: var(--navy); margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.5rem; }
+    .subsection-header h2 svg { width: 18px; height: 18px; color: var(--accent); }
+    .subsection-header p { font-size: 0.9rem; color: var(--grey-500); }
+
+    .standout-card { background: var(--navy); border-radius: 12px; padding: 2rem; margin-top: 1rem; transition: box-shadow 0.25s, transform 0.25s; }
+    .standout-card:hover { box-shadow: 0 8px 32px rgba(26,39,68,0.3); transform: translateY(-2px); }
+    .standout-card h3 { font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; color: white; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+    .standout-card h3 svg { width: 18px; height: 18px; opacity: 0.8; }
+    .standout-card > p { font-size: 0.9rem; color: rgba(255,255,255,0.7); margin-bottom: 1.25rem; line-height: 1.7; }
+    .standout-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .standout-tag { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.8rem; font-weight: 500; display: flex; align-items: center; gap: 0.4rem; }
+    .standout-tag svg { width: 12px; height: 12px; opacity: 0.7; }
+
+    footer { background: var(--grey-50); border-top: 1px solid var(--grey-200); padding: 3rem 2rem; margin-top: 4rem; }
+    footer .inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; flex-wrap: wrap; }
+    footer .brand h4 { font-family: var(--font-display); font-size: 1rem; font-weight: 600; color: var(--navy); margin-bottom: 0.5rem; }
+    footer .brand p { font-size: 0.85rem; color: var(--grey-500); max-width: 280px; }
+    footer .links h5 { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey-400); margin-bottom: 1rem; }
+    footer .links ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    footer .links a { font-size: 0.875rem; color: var(--grey-600); display: flex; align-items: center; gap: 0.4rem; }
+    footer .links a svg { width: 13px; height: 13px; opacity: 0.5; transition: opacity 0.15s; }
+    footer .links a:hover { color: var(--navy); }
+    footer .links a:hover svg { opacity: 1; }
+    footer .bottom { max-width: 1100px; margin: 2rem auto 0; padding-top: 1.5rem; border-top: 1px solid var(--grey-200); display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--grey-400); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+      GPDSN Asmara <span>/ Researcher</span>
+    </a>
+    <button class="mobile-toggle" onclick="document.querySelector('nav ul').classList.toggle('open')" aria-label="Menu">
+      <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+    <ul>
+      <li><a href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Home</a></li>
+      <li><a href="about.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>About</a></li>
+      <li><a href="roadmap.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/></svg>Roadmap</a></li>
+      <li><a href="projects.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/></svg>Projects</a></li>
+      <li><a href="cv.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>CV</a></li>
+      <li><a href="contact.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/></svg>Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="inner">
+    <p class="eyebrow">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+      Research Projects
+    </p>
+    <h1>Ongoing &amp; Completed Work</h1>
+    <p>Academic and applied research projects spanning digital customer experience, AI-driven services, and sustainable consumption — from foundational models to industry applications.</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="inner">
+    <!-- ONGOING RESEARCH -->
+    <div class="subsection-header reveal">
+      <h2>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Ongoing Research
+      </h2>
+      <p>Active research projects currently in progress</p>
+    </div>
+    <div class="project-grid">
+      <div class="project-card reveal">
+        <div class="project-card-header">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            Digital Customer Experience Framework
+          </h3>
+          <span class="project-status status-ongoing">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            Ongoing
+          </span>
+        </div>
+        <p>Developing models explaining how digital touchpoints influence customer satisfaction and loyalty in emerging market contexts. The framework integrates service quality, technology acceptance, and customer journey perspectives.</p>
+        <div class="project-meta">
+          <span class="meta-tag method"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>SEM-PLS</span>
+          <span class="meta-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/></svg>Digital Banking</span>
+          <span class="meta-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Customer Journey</span>
+        </div>
+      </div>
+      <div class="project-card reveal reveal-delay-1">
+        <div class="project-card-header">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4c0 1.1-.45 2.1-1.17 2.83L12 12l-2.83-3.17A4 4 0 0 1 12 2z"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
+            AI Customer Experience
+          </h3>
+          <span class="project-status status-ongoing">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            Ongoing
+          </span>
+        </div>
+        <p>Investigating AI personalization, trust mechanisms, and customer engagement in AI-augmented service environments. Focus on chatbot performance, human-AI interaction quality, and trust formation in financial services.</p>
+        <div class="project-meta">
+          <span class="meta-tag method"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>SEM-PLS</span>
+          <span class="meta-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>AI Personalization</span>
+          <span class="meta-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Trust in AI</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- COMPLETED RESEARCH -->
+<section class="section">
+  <div class="inner">
+    <div class="subsection-header reveal">
+      <h2>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        Completed Research
+      </h2>
+      <p>Finished publications and closed research projects</p>
+    </div>
+    <div class="project-grid">
+      <div class="project-card reveal">
+        <div class="project-card-header">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Sustainable Customer Experience
+          </h3>
+          <span class="project-status status-complete">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Complete
+          </span>
+        </div>
+        <p>Examining green consumer behavior, circular economy adoption, and the role of sustainable service innovation in shaping customer loyalty. Investigates how sustainability values influence customer trust and behavioral intentions.</p>
+        <div class="project-meta">
+          <span class="meta-tag method"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/></svg>Mixed Method</span>
+          <span class="meta-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Green Behavior</span>
+          <span class="meta-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Circular Economy</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- APPLIED RESEARCH -->
+<section class="section">
+  <div class="inner">
+    <div class="subsection-header reveal">
+      <h2>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        Applied Research Lab
+      </h2>
+      <p>Practitioner-researcher approach connecting academic rigor with real-world business problems</p>
+    </div>
+    <div class="standout-card reveal">
+      <h3>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        Gipsy Research Applied Research Lab
+      </h3>
+      <p>Using a practitioner-researcher approach to connect academic research with real-world business problems. Gipsy Research focuses on statistical analysis, research consulting, academic education, and AI-powered research solutions — serving as a bridge between theoretical frameworks and operational business challenges.</p>
+      <div class="standout-tags">
+        <span class="standout-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Statistical Analysis</span>
+        <span class="standout-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg>Research Consulting</span>
+        <span class="standout-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>Academic Education</span>
+        <span class="standout-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4c0 1.1-.45 2.1-1.17 2.83L12 12l-2.83-3.17A4 4 0 0 1 12 2z"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>AI-Powered Research</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- INDUSTRY PROJECTS -->
+<section class="section">
+  <div class="inner">
+    <div class="subsection-header reveal">
+      <h2>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        Industry Research Projects
+      </h2>
+      <p>Applied research collaborations across sectors</p>
+    </div>
+    <div class="project-grid">
+      <div class="project-card reveal">
+        <div class="project-card-header">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+            Chatbot Performance in Indonesian Banking
+          </h3>
+          <span class="project-status status-complete">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Complete
+          </span>
+        </div>
+        <p>Analisis Performa Chatbot Berdasarkan 20 Fitur Pada Parameter Industri Perbankan di Indonesia. Examined 20 chatbot features across Indonesian banking industry standards.</p>
+        <div class="project-meta">
+          <span class="meta-tag method"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>SEM-PLS</span>
+          <span class="meta-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/></svg>Digital Banking</span>
+          <span class="meta-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4c0 1.1-.45 2.1-1.17 2.83L12 12"/></svg>AI Service</span>
+          <span class="meta-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg>Published 2024</span>
+        </div>
+      </div>
+      <div class="project-card reveal reveal-delay-1">
+        <div class="project-card-header">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            Stock Investment Behavior in Indonesia
+          </h3>
+          <span class="project-status status-complete">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Complete
+          </span>
+        </div>
+        <p>Understanding Sharia-Compliant Stock Investment behavior in Indonesia — examining consumer financial decision-making and investment preferences in Islamic finance contexts.</p>
+        <div class="project-meta">
+          <span class="meta-tag method"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/></svg>Quantitative</span>
+          <span class="meta-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/></svg>Consumer Behavior</span>
+          <span class="meta-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/></svg>Finance</span>
+          <span class="meta-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/></svg>Published 2024</span>
+        </div>
+      </div>
+      <div class="project-card reveal reveal-delay-2">
+        <div class="project-card-header">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            Digital Platform as Information Source
+          </h3>
+          <span class="project-status status-complete">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Complete
+          </span>
+        </div>
+        <p>Implementasi Platform Digital Sebagai Sumber Informasi di Yayasan Muhibbatul Qur'an Kamandoran — digital transformation and social impact in educational foundations.</p>
+        <div class="project-meta">
+          <span class="meta-tag method"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/></svg>Mixed Method</span>
+          <span class="meta-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>Digital Transformation</span>
+          <span class="meta-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Social Impact</span>
+          <span class="meta-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/></svg>Published 2024</span>
+        </div>
+      </div>
+      <div class="project-card reveal reveal-delay-3">
+        <div class="project-card-header">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            Trading Volume &amp; Stock Price Volatility
+          </h3>
+          <span class="project-status status-complete">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Complete
+          </span>
+        </div>
+        <p>Pengaruh Volume dan Frekuensi Perdagangan Terhadap Volatilitas Harga Saham Pada Perusahaan Indeks LQ45 — behavioral analytics in Indonesian capital markets.</p>
+        <div class="project-meta">
+          <span class="meta-tag method"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/></svg>Econometrics</span>
+          <span class="meta-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/></svg>Finance</span>
+          <span class="meta-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Behavioral Analytics</span>
+          <span class="meta-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/></svg>Published 2024</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="inner">
+    <div class="brand">
+      <h4>Gregorius Peitra Dirgantara Sakti Nikula Asmara</h4>
+      <p>Early Career Researcher — Digital &amp; Sustainable Customer Experience</p>
+    </div>
+    <div class="links">
+      <h5>Navigation</h5>
+      <ul>
+        <li><a href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Home</a></li>
+        <li><a href="about.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/></svg>About</a></li>
+        <li><a href="roadmap.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/></svg>Roadmap</a></li>
+        <li><a href="projects.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/></svg>Projects</a></li>
+        <li><a href="cv.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>CV</a></li>
+        <li><a href="contact.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/></svg>Contact</a></li>
+      </ul>
+    </div>
+    <div class="links">
+      <h5>Connect</h5>
+      <ul>
+        <li><a href="mailto:petraasmara@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/></svg>Email</a></li>
+        <li><a href="https://linkedin.com/in/gregoriuspeitra" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/></svg>LinkedIn</a></li>
+        <li><a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>Google Scholar</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="bottom">
+    <span>&copy; 2026 Gregorius Peitra. All rights reserved.</span>
+    <span>Designed for academic collaboration</span>
+  </div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

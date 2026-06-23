@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Research Roadmap — Gregorius Peitra</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #1a2744;
+      --navy-light: #2d3f6b;
+      --white: #ffffff;
+      --grey-50: #f8f9fa;
+      --grey-100: #e9ecef;
+      --grey-200: #dee2e6;
+      --grey-300: #ced4da;
+      --grey-400: #adb5bd;
+      --grey-500: #6c757d;
+      --grey-600: #495057;
+      --grey-700: #343a40;
+      --accent: #3d5a80;
+      --accent-light: #e8edf4;
+      --font-display: 'IBM Plex Serif', Georgia, serif;
+      --font-body: 'IBM Plex Sans', -apple-system, system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+    body { font-family: var(--font-body); color: var(--grey-800); background: var(--white); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    a { color: var(--navy); text-decoration: none; transition: color 0.2s; }
+    a:hover { color: var(--accent); }
+
+    /* SCROLL REVEAL */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--grey-200); }
+    nav .inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    nav .logo { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--navy); letter-spacing: -0.01em; display: flex; align-items: center; gap: 0.6rem; }
+    nav .logo-icon { width: 32px; height: 32px; background: var(--navy); border-radius: 8px; display: grid; place-items: center; flex-shrink: 0; }
+    nav .logo-icon svg { width: 16px; height: 16px; color: white; }
+    nav .logo span { color: var(--grey-400); font-weight: 400; }
+    nav ul { list-style: none; display: flex; gap: 0.25rem; }
+    nav ul a { display: flex; align-items: center; gap: 0.4rem; padding: 0.5rem 0.85rem; font-size: 0.875rem; font-weight: 500; color: var(--grey-600); border-radius: 6px; transition: all 0.15s; }
+    nav ul a svg { width: 14px; height: 14px; opacity: 0.6; }
+    nav ul a:hover, nav ul a.active { color: var(--navy); background: var(--grey-50); }
+    nav ul a:hover svg, nav ul a.active svg { opacity: 1; }
+    nav .mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; color: var(--grey-700); }
+    @media (max-width: 768px) {
+      nav ul { display: none; }
+      nav .mobile-toggle { display: block; }
+      nav ul.open { display: flex; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: white; padding: 1rem; border-bottom: 1px solid var(--grey-200); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+    }
+
+    .page-header { padding: 8rem 2rem 4rem; background: var(--grey-50); border-bottom: 1px solid var(--grey-200); }
+    .page-header .inner { max-width: 900px; margin: 0 auto; }
+    .page-header .eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
+    .page-header .eyebrow svg { width: 12px; height: 12px; }
+    .page-header h1 { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight: 600; color: var(--navy); letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+    .page-header p { font-size: 1.05rem; color: var(--grey-600); max-width: 600px; line-height: 1.8; }
+
+    .section { padding: 4rem 2rem; }
+    .section .inner { max-width: 1000px; margin: 0 auto; }
+
+    /* PILLARS */
+    .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 3rem; }
+    @media (max-width: 700px) { .pillars { grid-template-columns: 1fr; } }
+    .pillar { background: var(--grey-50); border: 1px solid var(--grey-200); border-radius: 10px; padding: 1.5rem; text-align: center; transition: box-shadow 0.25s, border-color 0.25s, transform 0.25s; }
+    .pillar:hover { box-shadow: 0 8px 24px rgba(26,39,68,0.08); border-color: var(--accent); transform: translateY(-2px); }
+    .pillar-icon { width: 40px; height: 40px; background: var(--navy); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.75rem; }
+    .pillar-icon svg { width: 20px; height: 20px; color: white; }
+    .pillar h4 { font-family: var(--font-display); font-size: 0.9rem; font-weight: 600; color: var(--navy); margin-bottom: 0.35rem; }
+    .pillar p { font-size: 0.8rem; color: var(--grey-500); margin: 0; }
+
+    /* TIMELINE */
+    .timeline { position: relative; }
+    .timeline::before { content: ''; position: absolute; left: 120px; top: 0; bottom: 0; width: 2px; background: var(--grey-200); }
+    @media (max-width: 700px) { .timeline::before { left: 20px; } }
+
+    .timeline-stage { display: flex; gap: 3rem; margin-bottom: 3rem; position: relative; transition: transform 0.2s; }
+    .timeline-stage:hover { transform: translateX(4px); }
+    .timeline-stage::before { content: ''; position: absolute; left: 112px; top: 8px; width: 16px; height: 16px; border-radius: 50%; background: var(--navy); border: 3px solid white; box-shadow: 0 0 0 2px var(--navy); z-index: 1; animation: nodePulse 2.5s ease-in-out infinite; }
+    .timeline-stage:last-child::before { animation: none; background: var(--accent); box-shadow: 0 0 0 2px var(--accent); }
+    @keyframes nodePulse { 0%, 100% { box-shadow: 0 0 0 2px var(--navy); } 50% { box-shadow: 0 0 0 5px rgba(26,39,68,0.2); } }
+    @media (max-width: 700px) { .timeline-stage { flex-direction: column; gap: 0.5rem; padding-left: 50px; } .timeline-stage::before { left: 12px; } }
+    .timeline-stage:last-child { margin-bottom: 0; }
+
+    .timeline-year { width: 100px; flex-shrink: 0; padding-top: 0.2rem; }
+    .timeline-year span { font-family: var(--font-display); font-size: 1.4rem; font-weight: 600; color: var(--navy); }
+    @media (max-width: 700px) { .timeline-year { width: auto; padding-top: 0; } }
+
+    .timeline-content { flex: 1; background: var(--grey-50); border: 1px solid var(--grey-200); border-radius: 12px; padding: 1.75rem 2rem; transition: box-shadow 0.25s, border-color 0.25s; }
+    .timeline-content:hover { box-shadow: 0 4px 16px rgba(26,39,68,0.06); }
+    .timeline-content h3 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--navy); margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.5rem; }
+    .timeline-content h3 svg { width: 16px; height: 16px; color: var(--accent); }
+    .timeline-focus { font-size: 0.85rem; color: var(--accent); font-weight: 500; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.4rem; }
+    .timeline-focus svg { width: 13px; height: 13px; }
+
+    .timeline-topics { margin-bottom: 1rem; }
+    .timeline-topics h4, .timeline-methods h4 { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey-400); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem; }
+    .timeline-topics h4 svg, .timeline-methods h4 svg { width: 12px; height: 12px; }
+    .topic-list { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .topic-tag { background: var(--white); border: 1px solid var(--grey-200); color: var(--grey-700); padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.8rem; transition: border-color 0.15s; }
+    .topic-tag:hover { border-color: var(--accent); }
+    .method-list { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .method-tag { background: var(--navy); color: white; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.8rem; font-weight: 500; display: flex; align-items: center; gap: 0.4rem; }
+    .method-tag svg { width: 11px; height: 11px; opacity: 0.7; }
+
+    /* MODEL DIAGRAM */
+    .model-box { background: var(--navy); border-radius: 12px; padding: 2rem; margin-top: 2rem; text-align: center; }
+    .model-row { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .model-item { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 0.6rem 1.25rem; border-radius: 6px; font-size: 0.875rem; font-weight: 500; display: flex; align-items: center; gap: 0.5rem; }
+    .model-item svg { width: 14px; height: 14px; opacity: 0.6; }
+    .model-plus { color: rgba(255,255,255,0.4); font-size: 1.2rem; display: flex; align-items: center; }
+    .model-arrow { color: rgba(255,255,255,0.4); font-size: 1.5rem; margin: 0.5rem 0; display: flex; justify-content: center; }
+    .model-arrow svg { width: 22px; height: 22px; }
+    .model-result { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25); color: white; padding: 0.6rem 1.5rem; border-radius: 6px; font-size: 0.875rem; font-weight: 500; display: inline-flex; align-items: center; gap: 0.5rem; }
+    .model-result svg { width: 14px; height: 14px; }
+
+    .section-divider { height: 1px; background: var(--grey-200); margin: 0 2rem; }
+
+    footer { background: var(--grey-50); border-top: 1px solid var(--grey-200); padding: 3rem 2rem; margin-top: 4rem; }
+    footer .inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; flex-wrap: wrap; }
+    footer .brand h4 { font-family: var(--font-display); font-size: 1rem; font-weight: 600; color: var(--navy); margin-bottom: 0.5rem; }
+    footer .brand p { font-size: 0.85rem; color: var(--grey-500); max-width: 280px; }
+    footer .links h5 { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey-400); margin-bottom: 1rem; }
+    footer .links ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    footer .links a { font-size: 0.875rem; color: var(--grey-600); display: flex; align-items: center; gap: 0.4rem; }
+    footer .links a svg { width: 13px; height: 13px; opacity: 0.5; transition: opacity 0.15s; }
+    footer .links a:hover { color: var(--navy); }
+    footer .links a:hover svg { opacity: 1; }
+    footer .bottom { max-width: 1100px; margin: 2rem auto 0; padding-top: 1.5rem; border-top: 1px solid var(--grey-200); display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--grey-400); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+      GPDSN Asmara <span>/ Researcher</span>
+    </a>
+    <button class="mobile-toggle" onclick="document.querySelector('nav ul').classList.toggle('open')" aria-label="Menu">
+      <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+    <ul>
+      <li><a href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Home</a></li>
+      <li><a href="about.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>About</a></li>
+      <li><a href="roadmap.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/></svg>Roadmap</a></li>
+      <li><a href="projects.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/></svg>Projects</a></li>
+      <li><a href="cv.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>CV</a></li>
+      <li><a href="contact.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/></svg>Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="inner">
+    <p class="eyebrow">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><polyline points="8 8 12 4 16 8"/><polyline points="8 16 12 20 16 16"/></svg>
+      Research Roadmap
+    </p>
+    <h1>5-Year Research Agenda</h1>
+    <p>A structured trajectory from foundational digital customer experience research toward a unified theory of digital and sustainable customer experience by 2030.</p>
+  </div>
+</header>
+
+<!-- PILLARS -->
+<section class="section">
+  <div class="inner">
+    <div class="pillars">
+      <div class="pillar reveal">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <h4>Digital CX</h4>
+        <p>Technology-mediated customer experiences</p>
+      </div>
+      <div class="pillar reveal reveal-delay-1">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h4>Sustainable CX</h4>
+        <p>Green behavior & circular economy</p>
+      </div>
+      <div class="pillar reveal reveal-delay-2">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <h4>Service Innovation</h4>
+        <p>Service quality & loyalty outcomes</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- TIMELINE -->
+<section class="section">
+  <div class="inner">
+    <div class="timeline">
+
+      <!-- 2026 -->
+      <div class="timeline-stage reveal">
+        <div class="timeline-year"><span>2026</span></div>
+        <div class="timeline-content">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            Foundation Stage
+          </h3>
+          <p class="timeline-focus">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/></svg>
+            Build research foundation in Digital Customer Experience
+          </p>
+          <div class="timeline-topics">
+            <h4>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+              Topics
+            </h4>
+            <div class="topic-list">
+              <span class="topic-tag">Digital banking experience</span>
+              <span class="topic-tag">Service quality</span>
+              <span class="topic-tag">Customer satisfaction</span>
+              <span class="topic-tag">User experience</span>
+            </div>
+          </div>
+          <div class="timeline-methods">
+            <h4>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+              Methods
+            </h4>
+            <div class="method-list">
+              <span class="method-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>SEM-PLS</span>
+              <span class="method-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Survey Research</span>
+              <span class="method-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/></svg>Quantitative Analysis</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2027 -->
+      <div class="timeline-stage reveal reveal-delay-1">
+        <div class="timeline-year"><span>2027</span></div>
+        <div class="timeline-content">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+            Niche Development
+          </h3>
+          <p class="timeline-focus">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/></svg>
+            Digital + Sustainable Experience Convergence
+          </p>
+          <div class="timeline-topics">
+            <h4>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+              Topics
+            </h4>
+            <div class="topic-list">
+              <span class="topic-tag">AI Customer Experience</span>
+              <span class="topic-tag">Sustainable consumption</span>
+              <span class="topic-tag">Customer journey</span>
+            </div>
+          </div>
+          <div class="timeline-methods">
+            <h4>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/></svg>
+              Methods
+            </h4>
+            <div class="method-list">
+              <span class="method-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>SEM-PLS</span>
+              <span class="method-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/></svg>Mixed Method</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2028 -->
+      <div class="timeline-stage reveal reveal-delay-2">
+        <div class="timeline-year"><span>2028</span></div>
+        <div class="timeline-content">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+            Model Development
+          </h3>
+          <p class="timeline-focus">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/></svg>
+            Integrated Customer Experience Framework
+          </p>
+
+          <div class="model-box">
+            <div class="model-row">
+              <div class="model-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                Digital CX
+              </div>
+              <div class="model-plus">+</div>
+              <div class="model-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Sustainable CX
+              </div>
+              <div class="model-plus">+</div>
+              <div class="model-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                Service Innovation
+              </div>
+            </div>
+            <div class="model-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+            </div>
+            <div class="model-item" style="background: rgba(255,255,255,0.2);">Customer Experience Quality</div>
+            <div class="model-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+            </div>
+            <div class="model-result">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Loyalty & Advocacy
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2029 -->
+      <div class="timeline-stage reveal reveal-delay-3">
+        <div class="timeline-year"><span>2029</span></div>
+        <div class="timeline-content">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            Advanced Research
+          </h3>
+          <p class="timeline-focus">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/></svg>
+            Computational Customer Experience
+          </p>
+          <div class="timeline-topics">
+            <h4>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+              Topics
+            </h4>
+            <div class="topic-list">
+              <span class="topic-tag">Machine Learning</span>
+              <span class="topic-tag">Predictive Analytics</span>
+              <span class="topic-tag">Text Mining</span>
+            </div>
+          </div>
+          <div class="timeline-methods">
+            <h4>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/></svg>
+              Methods
+            </h4>
+            <div class="method-list">
+              <span class="method-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4c0 1.1-.45 2.1-1.17 2.83L12 12l-2.83-3.17A4 4 0 0 1 12 2z"/></svg>Computational Modeling</span>
+              <span class="method-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg>NLP</span>
+              <span class="method-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Predictive Analytics</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2030 -->
+      <div class="timeline-stage reveal reveal-delay-4">
+        <div class="timeline-year"><span>2030</span></div>
+        <div class="timeline-content" style="border-color: var(--navy); background: var(--accent-light);">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            Flagship Research
+          </h3>
+          <p class="timeline-focus">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/></svg>
+            Toward Unified Digital &amp; Sustainable Customer Experience Theory
+          </p>
+          <div class="timeline-topics">
+            <h4>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>
+              Vision
+            </h4>
+            <p style="font-size: 0.9rem; color: var(--grey-700); margin: 0;">Culminating contribution: a unified theoretical framework integrating digital transformation, sustainability values, and consumer behavior into a coherent model of customer experience in emerging markets.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="inner">
+    <div class="brand">
+      <h4>Gregorius Peitra Dirgantara Sakti Nikula Asmara</h4>
+      <p>Early Career Researcher — Digital &amp; Sustainable Customer Experience</p>
+    </div>
+    <div class="links">
+      <h5>Navigation</h5>
+      <ul>
+        <li><a href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Home</a></li>
+        <li><a href="about.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/></svg>About</a></li>
+        <li><a href="roadmap.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/></svg>Roadmap</a></li>
+        <li><a href="projects.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/></svg>Projects</a></li>
+        <li><a href="cv.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>CV</a></li>
+        <li><a href="contact.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/></svg>Contact</a></li>
+      </ul>
+    </div>
+    <div class="links">
+      <h5>Connect</h5>
+      <ul>
+        <li><a href="mailto:petraasmara@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/></svg>Email</a></li>
+        <li><a href="https://linkedin.com/in/gregoriuspeitra" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/></svg>LinkedIn</a></li>
+        <li><a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>Google Scholar</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="bottom">
+    <span>&copy; 2026 Gregorius Peitra. All rights reserved.</span>
+    <span>Designed for academic collaboration</span>
+  </div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

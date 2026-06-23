@@ -1,0 +1,12 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Text editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Vercel
+.vercel

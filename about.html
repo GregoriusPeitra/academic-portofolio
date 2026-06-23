@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Gregorius Peitra</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #1a2744;
+      --navy-light: #2d3f6b;
+      --white: #ffffff;
+      --grey-50: #f8f9fa;
+      --grey-100: #e9ecef;
+      --grey-200: #dee2e6;
+      --grey-300: #ced4da;
+      --grey-400: #adb5bd;
+      --grey-500: #6c757d;
+      --grey-600: #495057;
+      --grey-700: #343a40;
+      --grey-800: #212529;
+      --accent: #3d5a80;
+      --accent-light: #e8edf4;
+      --font-display: 'IBM Plex Serif', Georgia, serif;
+      --font-body: 'IBM Plex Sans', -apple-system, system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+    body { font-family: var(--font-body); color: var(--grey-800); background: var(--white); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    a { color: var(--navy); text-decoration: none; transition: color 0.2s; }
+    a:hover { color: var(--accent); }
+
+    /* SCROLL REVEAL */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--grey-200); }
+    nav .inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    nav .logo { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--navy); letter-spacing: -0.01em; display: flex; align-items: center; gap: 0.6rem; }
+    nav .logo-icon { width: 32px; height: 32px; background: var(--navy); border-radius: 8px; display: grid; place-items: center; flex-shrink: 0; }
+    nav .logo-icon svg { width: 16px; height: 16px; color: white; }
+    nav .logo span { color: var(--grey-400); font-weight: 400; }
+    nav ul { list-style: none; display: flex; gap: 0.25rem; }
+    nav ul a { display: flex; align-items: center; gap: 0.4rem; padding: 0.5rem 0.85rem; font-size: 0.875rem; font-weight: 500; color: var(--grey-600); border-radius: 6px; transition: all 0.15s; }
+    nav ul a svg { width: 14px; height: 14px; opacity: 0.6; }
+    nav ul a:hover, nav ul a.active { color: var(--navy); background: var(--grey-50); }
+    nav ul a:hover svg, nav ul a.active svg { opacity: 1; }
+    nav .mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; color: var(--grey-700); }
+    @media (max-width: 768px) {
+      nav ul { display: none; }
+      nav .mobile-toggle { display: block; }
+      nav ul.open { display: flex; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: white; padding: 1rem; border-bottom: 1px solid var(--grey-200); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+    }
+
+    .page-header { padding: 8rem 2rem 4rem; background: var(--grey-50); border-bottom: 1px solid var(--grey-200); }
+    .page-header .inner { max-width: 900px; margin: 0 auto; }
+    .page-header .eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
+    .page-header .eyebrow svg { width: 12px; height: 12px; }
+    .page-header h1 { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight: 600; color: var(--navy); letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+    .page-header p { font-size: 1.05rem; color: var(--grey-600); max-width: 600px; line-height: 1.8; }
+
+    .section { padding: 4rem 2rem; }
+    .section .inner { max-width: 1000px; margin: 0 auto; }
+    .section + .section { padding-top: 0; }
+    .section-divider { height: 1px; background: var(--grey-200); margin: 0 2rem; }
+
+    .profile-grid { display: grid; grid-template-columns: 280px 1fr; gap: 4rem; align-items: start; }
+    @media (max-width: 768px) { .profile-grid { grid-template-columns: 1fr; gap: 2rem; } }
+    .profile-photo-wrap { position: sticky; top: 90px; }
+    .profile-photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 12px;
+      border: 1px solid var(--grey-200);
+      box-shadow: 0 4px 24px rgba(26,39,68,0.10);
+      display: block;
+    }
+    .profile-photo-caption {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--grey-400);
+      margin-top: 0.75rem;
+      font-style: italic;
+    }
+    .profile-info { padding-top: 0.5rem; }
+
+    h2 { font-family: var(--font-display); font-size: 1.4rem; font-weight: 600; color: var(--navy); margin-bottom: 1.25rem; letter-spacing: -0.01em; display: flex; align-items: center; gap: 0.6rem; }
+    h2 svg { width: 18px; height: 18px; color: var(--accent); flex-shrink: 0; }
+    .label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
+    .label svg { width: 10px; height: 10px; }
+    p { font-size: 0.95rem; color: var(--grey-700); line-height: 1.85; margin-bottom: 1rem; }
+
+    .vision-card { background: var(--grey-50); border: 1px solid var(--grey-200); border-radius: 12px; padding: 2rem; margin-top: 1.5rem; transition: box-shadow 0.25s, border-color 0.25s; }
+    .vision-card:hover { box-shadow: 0 8px 32px rgba(26,39,68,0.08); border-color: var(--accent); }
+    .vision-card blockquote { font-family: var(--font-display); font-size: 1.05rem; color: var(--navy); font-style: italic; line-height: 1.8; margin-bottom: 1rem; padding-left: 1rem; border-left: 3px solid var(--accent); }
+
+    .vision-diagram { margin-top: 2rem; background: var(--grey-50); border: 1px solid var(--grey-200); border-radius: 12px; padding: 2rem; }
+    .diagram-center { text-align: center; margin-bottom: 1rem; }
+    .diagram-center span { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--navy); }
+    .diagram-row { display: flex; justify-content: center; gap: 1rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
+    .diagram-item { background: var(--navy); color: white; padding: 0.5rem 1.25rem; border-radius: 6px; font-size: 0.8rem; font-weight: 500; display: flex; align-items: center; gap: 0.5rem; }
+    .diagram-item svg { width: 14px; height: 14px; opacity: 0.7; }
+    .diagram-outcomes { display: flex; justify-content: center; gap: 0.75rem; margin-top: 1rem; flex-wrap: wrap; }
+    .diagram-outcome { background: var(--white); border: 1px solid var(--grey-200); color: var(--grey-700); padding: 0.35rem 0.85rem; border-radius: 4px; font-size: 0.75rem; font-weight: 500; display: flex; align-items: center; gap: 0.4rem; }
+    .diagram-outcome svg { width: 12px; height: 12px; color: var(--accent); }
+    .diagram-arrow { text-align: center; color: var(--grey-400); font-size: 1.2rem; margin: 0.5rem 0; display: flex; justify-content: center; }
+    .diagram-arrow svg { width: 20px; height: 20px; }
+
+    .interests-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    @media (max-width: 600px) { .interests-grid { grid-template-columns: 1fr; } }
+    .interest-card { background: var(--grey-50); border: 1px solid var(--grey-200); border-radius: 12px; padding: 1.75rem; transition: box-shadow 0.25s, border-color 0.25s, transform 0.25s; }
+    .interest-card:hover { box-shadow: 0 8px 24px rgba(26,39,68,0.08); border-color: var(--accent); transform: translateY(-2px); }
+    .interest-card h3 { font-family: var(--font-display); font-size: 1rem; font-weight: 600; color: var(--navy); margin-bottom: 1rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--grey-200); display: flex; align-items: center; gap: 0.6rem; }
+    .interest-card h3 svg { width: 16px; height: 16px; color: var(--accent); flex-shrink: 0; }
+    .interest-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .interest-card li { font-size: 0.875rem; color: var(--grey-600); padding-left: 1rem; position: relative; display: flex; align-items: center; gap: 0.5rem; }
+    .interest-card li::before { content: ''; position: absolute; left: 0; top: 0.5em; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); }
+    .interest-card li svg { width: 12px; height: 12px; color: var(--accent); margin-left: auto; opacity: 0; transition: opacity 0.2s; }
+    .interest-card li:hover svg { opacity: 0.7; }
+
+    .journey-timeline { position: relative; padding-left: 2rem; }
+    .journey-timeline::before { content: ''; position: absolute; left: 0; top: 0.5rem; bottom: 0.5rem; width: 2px; background: var(--grey-200); }
+    .journey-item { position: relative; margin-bottom: 2rem; transition: transform 0.2s; }
+    .journey-item:hover { transform: translateX(4px); }
+    .journey-item::before { content: ''; position: absolute; left: -2rem; top: 0.45rem; width: 8px; height: 8px; border-radius: 50%; background: var(--navy); border: 2px solid white; box-shadow: 0 0 0 2px var(--navy); }
+    .journey-item h4 { font-family: var(--font-display); font-size: 1rem; font-weight: 600; color: var(--navy); margin-bottom: 0.25rem; display: flex; align-items: center; gap: 0.5rem; }
+    .journey-item h4 svg { width: 14px; height: 14px; color: var(--accent); }
+    .journey-item .meta { font-size: 0.8rem; color: var(--grey-500); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem; }
+    .journey-item .meta svg { width: 12px; height: 12px; }
+    .journey-item p { font-size: 0.875rem; color: var(--grey-600); margin: 0; }
+
+    footer { background: var(--grey-50); border-top: 1px solid var(--grey-200); padding: 3rem 2rem; margin-top: 4rem; }
+    footer .inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; flex-wrap: wrap; }
+    footer .brand h4 { font-family: var(--font-display); font-size: 1rem; font-weight: 600; color: var(--navy); margin-bottom: 0.5rem; }
+    footer .brand p { font-size: 0.85rem; color: var(--grey-500); max-width: 280px; }
+    footer .links h5 { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey-400); margin-bottom: 1rem; }
+    footer .links ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    footer .links a { font-size: 0.875rem; color: var(--grey-600); display: flex; align-items: center; gap: 0.4rem; }
+    footer .links a svg { width: 13px; height: 13px; opacity: 0.5; transition: opacity 0.15s; }
+    footer .links a:hover { color: var(--navy); }
+    footer .links a:hover svg { opacity: 1; }
+    footer .bottom { max-width: 1100px; margin: 2rem auto 0; padding-top: 1.5rem; border-top: 1px solid var(--grey-200); display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--grey-400); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+      GPDSN Asmara <span>/ Researcher</span>
+    </a>
+    <button class="mobile-toggle" onclick="document.querySelector('nav ul').classList.toggle('open')" aria-label="Menu">
+      <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+    <ul>
+      <li><a href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Home</a></li>
+      <li><a href="about.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>About</a></li>
+      <li><a href="roadmap.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/></svg>Roadmap</a></li>
+      <li><a href="projects.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/></svg>Projects</a></li>
+      <li><a href="cv.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>CV</a></li>
+      <li><a href="contact.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/></svg>Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="inner">
+    <p class="eyebrow">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
+      About
+    </p>
+    <h1>About the Researcher</h1>
+    <p>Digital Business graduate with strong interest in research, technology, customer experience, and sustainable business — building a long-term research agenda in digital and sustainable customer experience.</p>
+  </div>
+</header>
+
+<!-- PERSONAL PROFILE -->
+<section class="section">
+  <div class="inner">
+    <span class="label">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      01 — Personal Profile
+    </span>
+    <div class="profile-grid">
+      <div class="profile-photo-wrap reveal">
+        <img src="mqp9lehc-DSC_8727.JPG" alt="Gregorius Peitra Dirgantara Sakti Nikula Asmara" class="profile-photo" />
+        <p class="profile-photo-caption">Gregorius Peitra, 2025</p>
+      </div>
+      <div class="profile-info">
+        <h2>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Background
+        </h2>
+        <p>Gregorius Peitra Dirgantara Sakti Nikula Asmara is an early-career researcher focusing on digital transformation, customer experience, artificial intelligence, and consumer behavior.</p>
+        <p>His research examines how technology, service innovation, and sustainability values influence customer trust, satisfaction, loyalty, engagement, and behavioral intention. His research journey combines academic research with industry experience through customer experience analytics, digital business, and research consulting.</p>
+        <p>His work sits at the intersection of digital innovation and sustainable business models, with a focus on emerging markets where digital transformation is rapidly reshaping consumer expectations and business models.</p>
+        <div style="margin-top:2rem;">
+          <h2>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            Research Positioning
+          </h2>
+          <div class="vision-card">
+            <blockquote>"Exploring how digital transformation, sustainability, and consumer behavior shape future customer experiences in emerging markets."</blockquote>
+            <p>This positioning guides a coherent research agenda spanning digital CX, AI-driven service innovation, and sustainable consumption patterns — united by a focus on the customer as the unit of analysis.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- RESEARCH VISION -->
+<section class="section">
+  <div class="inner">
+    <span class="label">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      02 — Research Vision
+    </span>
+    <h2>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      Integrated Vision
+    </h2>
+    <p>My long-term research agenda focuses on developing an integrated understanding of customer experience transformation in digital and sustainable ecosystems.</p>
+
+    <div class="vision-diagram reveal">
+      <div class="diagram-center"><span>CUSTOMER EXPERIENCE</span></div>
+      <div class="diagram-arrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+      </div>
+      <div class="diagram-row">
+        <div class="diagram-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          Digital CX
+        </div>
+        <div class="diagram-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Sustainable CX
+        </div>
+        <div class="diagram-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          Service CX
+        </div>
+      </div>
+      <div class="diagram-arrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+      </div>
+      <div class="diagram-outcomes">
+        <div class="diagram-outcome">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Satisfaction
+        </div>
+        <div class="diagram-outcome">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Loyalty
+        </div>
+        <div class="diagram-outcome">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Advocacy
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- RESEARCH INTERESTS -->
+<section class="section">
+  <div class="inner">
+    <span class="label">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      03 — Research Interests
+    </span>
+    <h2>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      Four Interconnected Areas
+    </h2>
+    <div class="interests-grid">
+      <div class="interest-card reveal">
+        <h3>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          Digital Customer Experience
+        </h3>
+        <ul>
+          <li>Digital service quality <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></li>
+          <li>Customer journey mapping <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></li>
+          <li>User experience design <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></li>
+          <li>Digital banking <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></li>
+        </ul>
+      </div>
+      <div class="interest-card reveal reveal-delay-1">
+        <h3>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4c0 1.1-.45 2.1-1.17 2.83L12 12l-2.83-3.17A4 4 0 0 1 12 2z"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
+          AI Customer Experience
+        </h3>
+        <ul>
+          <li>AI personalization <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></li>
+          <li>AI chatbot design <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></li>
+          <li>Human-AI interaction <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></li>
+          <li>Trust in AI systems <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></li>
+        </ul>
+      </div>
+      <div class="interest-card reveal reveal-delay-2">
+        <h3>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Sustainable Customer Experience
+        </h3>
+        <ul>
+          <li>Green behavior <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></li>
+          <li>Sustainable consumption <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></li>
+          <li>Circular economy <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></li>
+          <li>Eco-labeled services <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></li>
+        </ul>
+      </div>
+      <div class="interest-card reveal reveal-delay-3">
+        <h3>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          Service Experience
+        </h3>
+        <ul>
+          <li>Service quality <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></li>
+          <li>Customer satisfaction <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></li>
+          <li>Loyalty programs <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></li>
+          <li>Service innovation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ACADEMIC JOURNEY -->
+<section class="section">
+  <div class="inner">
+    <span class="label">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      04 — Academic Journey
+    </span>
+    <h2>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><polyline points="8 8 12 4 16 8"/><polyline points="8 16 12 20 16 16"/></svg>
+      Research Trajectory
+    </h2>
+    <div class="journey-timeline">
+      <div class="journey-item reveal">
+        <h4>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          Digital Business Education
+        </h4>
+        <p class="meta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+          BRI Institute / Transform as Cyber University
+        </p>
+        <p>Built foundation in digital business, information systems, and business analytics — with a focus on the intersection of technology and customer value creation.</p>
+      </div>
+      <div class="journey-item reveal reveal-delay-1">
+        <h4>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          Customer Experience Research
+        </h4>
+        <p class="meta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+          PT Bank Rakyat Indonesia — Customer Experience Analyst
+        </p>
+        <p>Applied research methods to real-world banking context: survey data processing, product benchmarking, and customer insight analysis at Indonesia's largest bank.</p>
+      </div>
+      <div class="journey-item reveal reveal-delay-2">
+        <h4>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          Research Consulting Practice
+        </h4>
+        <p class="meta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+          PT Riset Konsultan — Research Consultant
+        </p>
+        <p>Developed expertise in research methodology consulting, statistical analysis, and research framework development across industries.</p>
+      </div>
+      <div class="journey-item reveal reveal-delay-3">
+        <h4>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          Gipsy Research — Applied Research Lab
+        </h4>
+        <p class="meta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Founder & CEO, 2024 – Present
+        </p>
+        <p>Built a practitioner-researcher approach connecting academic research rigor with real-world business problems through statistical analysis, consulting, and AI-powered solutions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="inner">
+    <div class="brand">
+      <h4>Gregorius Peitra Dirgantara Sakti Nikula Asmara</h4>
+      <p>Early Career Researcher — Digital &amp; Sustainable Customer Experience</p>
+    </div>
+    <div class="links">
+      <h5>Navigation</h5>
+      <ul>
+        <li><a href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Home</a></li>
+        <li><a href="about.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/></svg>About</a></li>
+        <li><a href="roadmap.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/></svg>Roadmap</a></li>
+        <li><a href="projects.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/></svg>Projects</a></li>
+        <li><a href="cv.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>CV</a></li>
+        <li><a href="contact.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/></svg>Contact</a></li>
+      </ul>
+    </div>
+    <div class="links">
+      <h5>Connect</h5>
+      <ul>
+        <li><a href="mailto:petraasmara@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/></svg>Email</a></li>
+        <li><a href="https://linkedin.com/in/gregoriuspeitra" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/></svg>LinkedIn</a></li>
+        <li><a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>Google Scholar</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="bottom">
+    <span>&copy; 2026 Gregorius Peitra. All rights reserved.</span>
+    <span>Designed for academic collaboration</span>
+  </div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Academic CV — Gregorius Peitra</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #1a2744;
+      --navy-light: #2d3f6b;
+      --white: #ffffff;
+      --grey-50: #f8f9fa;
+      --grey-100: #e9ecef;
+      --grey-200: #dee2e6;
+      --grey-300: #ced4da;
+      --grey-400: #adb5bd;
+      --grey-500: #6c757d;
+      --grey-600: #495057;
+      --grey-700: #343a40;
+      --grey-800: #212529;
+      --accent: #3d5a80;
+      --accent-light: #e8edf4;
+      --font-display: 'IBM Plex Serif', Georgia, serif;
+      --font-body: 'IBM Plex Sans', -apple-system, system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+    body { font-family: var(--font-body); color: var(--grey-800); background: var(--white); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    a { color: var(--navy); text-decoration: none; transition: color 0.2s; }
+    a:hover { color: var(--accent); }
+
+    /* SCROLL REVEAL */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--grey-200); }
+    nav .inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    nav .logo { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--navy); letter-spacing: -0.01em; display: flex; align-items: center; gap: 0.6rem; }
+    nav .logo-icon { width: 32px; height: 32px; background: var(--navy); border-radius: 8px; display: grid; place-items: center; flex-shrink: 0; }
+    nav .logo-icon svg { width: 16px; height: 16px; color: white; }
+    nav .logo span { color: var(--grey-400); font-weight: 400; }
+    nav ul { list-style: none; display: flex; gap: 0.25rem; }
+    nav ul a { display: flex; align-items: center; gap: 0.4rem; padding: 0.5rem 0.85rem; font-size: 0.875rem; font-weight: 500; color: var(--grey-600); border-radius: 6px; transition: all 0.15s; }
+    nav ul a svg { width: 14px; height: 14px; opacity: 0.6; }
+    nav ul a:hover, nav ul a.active { color: var(--navy); background: var(--grey-50); }
+    nav ul a:hover svg, nav ul a.active svg { opacity: 1; }
+    nav .mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; color: var(--grey-700); }
+    @media (max-width: 768px) {
+      nav ul { display: none; }
+      nav .mobile-toggle { display: block; }
+      nav ul.open { display: flex; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: white; padding: 1rem; border-bottom: 1px solid var(--grey-200); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+    }
+
+    .page-header { padding: 8rem 2rem 3rem; background: var(--grey-50); border-bottom: 1px solid var(--grey-200); }
+    .page-header .inner { max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; flex-wrap: wrap; }
+    .page-header .left .eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+    .page-header .left .eyebrow svg { width: 12px; height: 12px; }
+    .page-header h1 { font-family: var(--font-display); font-size: clamp(1.75rem, 3.5vw, 2.5rem); font-weight: 600; color: var(--navy); letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 0.5rem; }
+    .page-header .title-line { font-size: 0.95rem; color: var(--grey-500); display: flex; align-items: center; gap: 0.4rem; }
+    .page-header .title-line svg { width: 14px; height: 14px; opacity: 0.5; }
+    .btn-download { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.5rem; background: var(--navy); color: white; border-radius: 8px; font-size: 0.875rem; font-weight: 600; transition: all 0.2s; border: none; cursor: pointer; font-family: var(--font-body); text-decoration: none; }
+    .btn-download svg { width: 16px; height: 16px; }
+    .btn-download:hover { background: var(--navy-light); color: white; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(26,39,68,0.3); }
+
+    .cv-body { max-width: 900px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+
+    .cv-section { margin-bottom: 3rem; }
+    .cv-section:last-child { margin-bottom: 0; }
+
+    .cv-section-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 2px solid var(--navy); }
+    .cv-section-header h2 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--navy); display: flex; align-items: center; gap: 0.5rem; }
+    .cv-section-header h2 svg { width: 16px; height: 16px; color: var(--accent); }
+    .cv-section-header .num { font-size: 0.75rem; font-weight: 700; color: var(--grey-400); letter-spacing: 0.1em; }
+
+    .cv-entry { margin-bottom: 1.75rem; transition: transform 0.2s; }
+    .cv-entry:last-child { margin-bottom: 0; }
+    .cv-entry:hover { transform: translateX(3px); }
+    .entry-header { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: 0.3rem; flex-wrap: wrap; }
+    .entry-header h3 { font-family: var(--font-display); font-size: 1rem; font-weight: 600; color: var(--navy); display: flex; align-items: center; gap: 0.4rem; }
+    .entry-header h3 svg { width: 14px; height: 14px; color: var(--accent); flex-shrink: 0; }
+    .entry-header .date { font-size: 0.8rem; color: var(--grey-500); font-weight: 500; white-space: nowrap; display: flex; align-items: center; gap: 0.3rem; }
+    .entry-header .date svg { width: 12px; height: 12px; opacity: 0.5; }
+    .entry-sub { font-size: 0.875rem; color: var(--grey-600); font-weight: 500; margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.4rem; }
+    .entry-sub svg { width: 13px; height: 13px; opacity: 0.5; }
+    .entry-sub + .entry-sub { margin-top: -0.2rem; }
+    .entry-body { font-size: 0.875rem; color: var(--grey-600); line-height: 1.7; }
+    .entry-body p { margin-bottom: 0.5rem; }
+    .entry-body p:last-child { margin-bottom: 0; }
+
+    .entry-achievements { list-style: none; margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.3rem; }
+    .entry-achievements li { font-size: 0.85rem; color: var(--grey-600); padding-left: 1rem; position: relative; display: flex; align-items: flex-start; gap: 0.5rem; }
+    .entry-achievements li svg { width: 12px; height: 12px; color: var(--accent); flex-shrink: 0; margin-top: 0.3em; }
+
+    .gpa-badge { display: inline-flex; align-items: center; gap: 0.35rem; background: var(--accent-light); border: 1px solid #c7d7ea; color: var(--navy); padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; margin-top: 0.4rem; }
+    .gpa-badge svg { width: 11px; height: 11px; }
+
+    .achievement-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    @media (max-width: 600px) { .achievement-grid { grid-template-columns: 1fr; } }
+    .ach-card { background: var(--grey-50); border: 1px solid var(--grey-200); border-radius: 10px; padding: 1.25rem; transition: box-shadow 0.25s, border-color 0.25s, transform 0.25s; }
+    .ach-card:hover { box-shadow: 0 4px 16px rgba(26,39,68,0.06); border-color: var(--accent); transform: translateY(-1px); }
+    .ach-year { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.4rem; }
+    .ach-year svg { width: 11px; height: 11px; }
+    .ach-card h4 { font-family: var(--font-display); font-size: 0.9rem; font-weight: 600; color: var(--navy); line-height: 1.4; }
+
+    .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+    @media (max-width: 600px) { .skills-grid { grid-template-columns: 1fr; } }
+    .skill-group h4 { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey-400); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.4rem; }
+    .skill-group h4 svg { width: 12px; height: 12px; }
+    .skill-list { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .skill-tag { background: var(--grey-50); border: 1px solid var(--grey-200); color: var(--grey-700); padding: 0.3rem 0.75rem; border-radius: 5px; font-size: 0.8rem; transition: border-color 0.15s, color 0.15s; display: flex; align-items: center; gap: 0.3rem; }
+    .skill-tag:hover { border-color: var(--accent); color: var(--navy); }
+    .skill-tag svg { width: 11px; height: 11px; opacity: 0.5; }
+
+    .pub-list { display: flex; flex-direction: column; gap: 1.5rem; }
+    .pub-card { background: var(--grey-50); border: 1px solid var(--grey-200); border-radius: 10px; padding: 1.5rem; transition: box-shadow 0.25s, border-color 0.25s, transform 0.25s; }
+    .pub-card:hover { box-shadow: 0 4px 16px rgba(26,39,68,0.06); border-color: var(--accent); transform: translateY(-1px); }
+    .pub-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
+    .pub-header h3 { font-family: var(--font-display); font-size: 0.95rem; font-weight: 600; color: var(--navy); line-height: 1.5; flex: 1; display: flex; align-items: flex-start; gap: 0.5rem; }
+    .pub-header h3 svg { width: 14px; height: 14px; color: var(--accent); flex-shrink: 0; margin-top: 2px; }
+    .pub-year-badge { background: var(--navy); color: white; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; white-space: nowrap; display: flex; align-items: center; gap: 0.3rem; }
+    .pub-year-badge svg { width: 10px; height: 10px; }
+    .pub-authors { font-size: 0.8rem; color: var(--grey-500); font-style: italic; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem; }
+    .pub-authors svg { width: 12px; height: 12px; opacity: 0.5; }
+    .pub-meta { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+    .pub-journal { font-size: 0.8rem; color: var(--grey-600); font-weight: 500; display: flex; align-items: center; gap: 0.3rem; }
+    .pub-journal svg { width: 11px; height: 11px; opacity: 0.5; }
+    .pub-citations { font-size: 0.75rem; color: var(--grey-500); background: var(--grey-100); padding: 0.15rem 0.5rem; border-radius: 3px; display: flex; align-items: center; gap: 0.3rem; }
+    .pub-citations svg { width: 10px; height: 10px; }
+    .pub-cat { font-size: 0.7rem; font-weight: 600; color: var(--accent); background: var(--accent-light); padding: 0.15rem 0.5rem; border-radius: 3px; display: flex; align-items: center; gap: 0.3rem; }
+    .pub-cat svg { width: 10px; height: 10px; }
+
+    .section-divider { height: 1px; background: var(--grey-200); margin: 2.5rem 0; }
+
+    footer { background: var(--grey-50); border-top: 1px solid var(--grey-200); padding: 3rem 2rem; margin-top: 4rem; }
+    footer .inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; flex-wrap: wrap; }
+    footer .brand h4 { font-family: var(--font-display); font-size: 1rem; font-weight: 600; color: var(--navy); margin-bottom: 0.5rem; }
+    footer .brand p { font-size: 0.85rem; color: var(--grey-500); max-width: 280px; }
+    footer .links h5 { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey-400); margin-bottom: 1rem; }
+    footer .links ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    footer .links a { font-size: 0.875rem; color: var(--grey-600); display: flex; align-items: center; gap: 0.4rem; }
+    footer .links a svg { width: 13px; height: 13px; opacity: 0.5; transition: opacity 0.15s; }
+    footer .links a:hover { color: var(--navy); }
+    footer .links a:hover svg { opacity: 1; }
+    footer .bottom { max-width: 1100px; margin: 2rem auto 0; padding-top: 1.5rem; border-top: 1px solid var(--grey-200); display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--grey-400); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+      GPDSN Asmara <span>/ Researcher</span>
+    </a>
+    <button class="mobile-toggle" onclick="document.querySelector('nav ul').classList.toggle('open')" aria-label="Menu">
+      <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+    <ul>
+      <li><a href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Home</a></li>
+      <li><a href="about.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>About</a></li>
+      <li><a href="roadmap.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/></svg>Roadmap</a></li>
+      <li><a href="projects.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/></svg>Projects</a></li>
+      <li><a href="cv.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>CV</a></li>
+      <li><a href="contact.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/></svg>Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="page-header" id="download">
+  <div class="inner">
+    <div class="left">
+      <p class="eyebrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+        Academic CV
+      </p>
+      <h1>Gregorius Peitra Dirgantara Sakti Nikula Asmara</h1>
+      <p class="title-line">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
+        Early Career Researcher — Digital &amp; Sustainable Customer Experience
+      </p>
+    </div>
+    <a href="#" class="btn-download" onclick="window.print(); return false;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download CV PDF
+    </a>
+  </div>
+</header>
+
+<div class="cv-body">
+
+  <!-- EDUCATION -->
+  <section class="cv-section">
+    <div class="cv-section-header reveal">
+      <span class="num">01</span>
+      <h2>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        Education
+      </h2>
+    </div>
+
+    <div class="cv-entry reveal">
+      <div class="entry-header">
+        <h3>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/></svg>
+          Bachelor of Digital Business
+        </h3>
+        <span class="date">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          2020
+        </span>
+      </div>
+      <p class="entry-sub">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+        BRI Institute / Transform as Cyber University
+      </p>
+      <div class="gpa-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        GPA: 3.99 / 4.00
+      </div>
+      <div class="entry-body" style="margin-top:0.75rem;">
+        <p>Foundation in digital business, information systems, and business analytics — with specialization in the intersection of technology and customer value creation.</p>
+        <ul class="entry-achievements">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            BUMN APERTI Scholarship Recipient 2020 — nationally competitive scholarship for outstanding students in state-owned enterprise ecosystem
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- PROFESSIONAL EXPERIENCE -->
+  <section class="cv-section">
+    <div class="cv-section-header reveal">
+      <span class="num">02</span>
+      <h2>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        Professional Experience
+      </h2>
+    </div>
+
+    <div class="cv-entry reveal">
+      <div class="entry-header">
+        <h3>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          Chief Executive Officer
+        </h3>
+        <span class="date">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/></svg>
+          2024 – Present
+        </span>
+      </div>
+      <p class="entry-sub">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>
+        Gipsy Research — Research Consulting Startup
+      </p>
+      <div class="entry-body">
+        <p>Founder and CEO of Gipsy Research, a research consulting startup focusing on statistical analysis, consulting, academic education, and AI-powered research solutions. Using a practitioner-researcher approach to bridge academic rigor and real-world business problems.</p>
+        <ul class="entry-achievements">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            IDR 300M+ lifetime revenue generated
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            4,500+ monthly active users across platforms
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            100,000+ total users served
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Built and managed 40+ research talents
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Managed 100+ student ambassadors across programs
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cv-entry reveal reveal-delay-1">
+      <div class="entry-header">
+        <h3>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          Customer Experience Analyst
+        </h3>
+        <span class="date">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/></svg>
+          2022 – 2024
+        </span>
+      </div>
+      <p class="entry-sub">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+        PT Bank Rakyat Indonesia Tbk — Indonesia's Largest Bank
+      </p>
+      <div class="entry-body">
+        <p>Applied customer experience research and analytics within Indonesia's largest financial institution. Responsible for translating customer data into actionable product and service improvements.</p>
+        <ul class="entry-achievements">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Customer experience analytics and voice-of-customer programs
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Survey data processing and statistical analysis
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Product benchmarking across Indonesian financial services
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Customer insight analysis for product development
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cv-entry reveal reveal-delay-2">
+      <div class="entry-header">
+        <h3>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+          Research Consultant
+        </h3>
+        <span class="date">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/></svg>
+          2021 – 2022
+        </span>
+      </div>
+      <p class="entry-sub">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+        PT Riset Konsultan — Research Consulting Firm
+      </p>
+      <div class="entry-body">
+        <p>Provided research methodology consulting and statistical analysis services to academic and industry clients. Developed research frameworks and conducted analyses across multiple sectors.</p>
+        <ul class="entry-achievements">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Research methodology consulting for academic papers
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Statistical analysis using SEM-PLS, SPSS, and EViews
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Research framework development for corporate clients
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- LEADERSHIP -->
+  <section class="cv-section">
+    <div class="cv-section-header reveal">
+      <span class="num">03</span>
+      <h2>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Leadership Experience
+      </h2>
+    </div>
+
+    <div class="cv-entry reveal">
+      <div class="entry-header">
+        <h3>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          Chairman of Student Executive Board
+        </h3>
+        <span class="date">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/></svg>
+          2020 – 2022
+        </span>
+      </div>
+      <p class="entry-sub">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+        BRI Institute Student Organization
+      </p>
+      <div class="entry-body">
+        <p>Led student government and organized large-scale programs across the institute. Managed a team of executives and coordinated activities across 8+ student organizations.</p>
+        <ul class="entry-achievements">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Managed 30+ programs including academic, cultural, and community events
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Coordinated activities across 8+ student organizations
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Directed initiatives benefiting 1,000+ students
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- PUBLICATIONS -->
+  <section class="cv-section">
+    <div class="cv-section-header reveal">
+      <span class="num">04</span>
+      <h2>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        Publications
+      </h2>
+    </div>
+
+    <div class="pub-list">
+      <div class="pub-card reveal">
+        <div class="pub-header">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+            Analisis Performa Chatbot Berdasarkan 20 Fitur Pada Parameter Industri Perbankan di Indonesia
+          </h3>
+          <span class="pub-year-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/></svg>
+            2024
+          </span>
+        </div>
+        <p class="pub-authors">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          GPDSN Asmara, V Afifah, LC Artheswara
+        </p>
+        <div class="pub-meta">
+          <span class="pub-journal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/></svg>
+            IKRA-ITH Informatika
+          </span>
+          <span class="pub-citations">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            6 citations
+          </span>
+          <span class="pub-cat">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4c0 1.1-.45 2.1-1.17 2.83L12 12"/></svg>
+            Digital CX &amp; AI Service
+          </span>
+        </div>
+      </div>
+
+      <div class="pub-card reveal reveal-delay-1">
+        <div class="pub-header">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+            Pengaruh Volume dan Frekuensi Perdagangan Terhadap Volatilitas Harga Saham Pada Perusahaan Indeks LQ45
+          </h3>
+          <span class="pub-year-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/></svg>
+            2024
+          </span>
+        </div>
+        <p class="pub-authors">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          GPDSN Asmara
+        </p>
+        <div class="pub-meta">
+          <span class="pub-journal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/></svg>
+            Indonesian Finance Journal
+          </span>
+          <span class="pub-citations">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/></svg>
+            3 citations
+          </span>
+          <span class="pub-cat">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4c0 1.1-.45 2.1-1.17 2.83L12 12"/></svg>
+            Finance &amp; Behavioral Analytics
+          </span>
+        </div>
+      </div>
+
+      <div class="pub-card reveal reveal-delay-2">
+        <div class="pub-header">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+            Implementasi Platform Digital Sebagai Sumber Informasi di Yayasan Muhibbatul Qur'an Kamandoran
+          </h3>
+          <span class="pub-year-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/></svg>
+            2024
+          </span>
+        </div>
+        <p class="pub-authors">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          GPDSN Asmara
+        </p>
+        <div class="pub-meta">
+          <span class="pub-journal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/></svg>
+            Journal of Digital Society
+          </span>
+          <span class="pub-citations">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/></svg>
+            —
+          </span>
+          <span class="pub-cat">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4c0 1.1-.45 2.1-1.17 2.83L12 12"/></svg>
+            Digital Transformation &amp; Social Impact
+          </span>
+        </div>
+      </div>
+
+      <div class="pub-card reveal reveal-delay-3">
+        <div class="pub-header">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+            Understanding Sharia-Compliant Stock Investment In Indonesia
+          </h3>
+          <span class="pub-year-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/></svg>
+            2024
+          </span>
+        </div>
+        <p class="pub-authors">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          GPDSN Asmara
+        </p>
+        <div class="pub-meta">
+          <span class="pub-journal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/></svg>
+            Islamic Finance &amp; Behavioral Research
+          </span>
+          <span class="pub-citations">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/></svg>
+            —
+          </span>
+          <span class="pub-cat">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4c0 1.1-.45 2.1-1.17 2.83L12 12"/></svg>
+            Consumer Behavior &amp; Financial Decision Making
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ACHIEVEMENTS -->
+  <section class="cv-section">
+    <div class="cv-section-header reveal">
+      <span class="num">05</span>
+      <h2>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Achievements
+      </h2>
+    </div>
+
+    <div class="achievement-grid">
+      <div class="ach-card reveal">
+        <p class="ach-year">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/></svg>
+          2024
+        </p>
+        <h4>1st Place — TDC Summit Fest Startup Challenge</h4>
+      </div>
+      <div class="ach-card reveal reveal-delay-1">
+        <p class="ach-year">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/></svg>
+          2023
+        </p>
+        <h4>2nd Place — Imagepreneur Business Plan Competition</h4>
+      </div>
+      <div class="ach-card reveal reveal-delay-2">
+        <p class="ach-year">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/></svg>
+          2022
+        </p>
+        <h4>1st Winner — IMAVI Theology Festival Essay Contest</h4>
+      </div>
+      <div class="ach-card reveal reveal-delay-3">
+        <p class="ach-year">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/></svg>
+          2021
+        </p>
+        <h4>1st Place — Decompe UI/UX Design Competition</h4>
+      </div>
+      <div class="ach-card reveal" style="grid-column: span 2;">
+        <p class="ach-year">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/></svg>
+          2021
+        </p>
+        <h4>Top 50 Showcase — Indonesian Digital Tribe BUMN</h4>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- RESEARCH SKILLS -->
+  <section class="cv-section">
+    <div class="cv-section-header reveal">
+      <span class="num">06</span>
+      <h2>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        Research Skills
+      </h2>
+    </div>
+
+    <div class="skills-grid">
+      <div class="skill-group reveal">
+        <h4>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          Research Methods
+        </h4>
+        <div class="skill-list">
+          <span class="skill-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/></svg>Research Design</span>
+          <span class="skill-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/></svg>Literature Review</span>
+          <span class="skill-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/></svg>Survey Design</span>
+          <span class="skill-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/></svg>SEM-PLS</span>
+          <span class="skill-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/></svg>Statistical Modelling</span>
+          <span class="skill-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/></svg>Mixed Methods</span>
+          <span class="skill-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/></svg>Quantitative Analysis</span>
+        </div>
+      </div>
+      <div class="skill-group reveal reveal-delay-1">
+        <h4>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          Tools &amp; Software
+        </h4>
+        <div class="skill-list">
+          <span class="skill-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/></svg>SmartPLS</span>
+          <span class="skill-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/></svg>SPSS</span>
+          <span class="skill-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/></svg>Minitab</span>
+          <span class="skill-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/></svg>EViews</span>
+          <span class="skill-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/></svg>Data Analytics</span>
+          <span class="skill-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/></svg>Python (Data)</span>
+          <span class="skill-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/></svg>Excel / VBA</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="inner">
+    <div class="brand">
+      <h4>Gregorius Peitra Dirgantara Sakti Nikula Asmara</h4>
+      <p>Early Career Researcher — Digital &amp; Sustainable Customer Experience</p>
+    </div>
+    <div class="links">
+      <h5>Navigation</h5>
+      <ul>
+        <li><a href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Home</a></li>
+        <li><a href="about.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/></svg>About</a></li>
+        <li><a href="roadmap.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/></svg>Roadmap</a></li>
+        <li><a href="projects.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/></svg>Projects</a></li>
+        <li><a href="cv.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>CV</a></li>
+        <li><a href="contact.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/></svg>Contact</a></li>
+      </ul>
+    </div>
+    <div class="links">
+      <h5>Connect</h5>
+      <ul>
+        <li><a href="mailto:petraasmara@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/></svg>Email</a></li>
+        <li><a href="https://linkedin.com/in/gregoriuspeitra" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/></svg>LinkedIn</a></li>
+        <li><a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>Google Scholar</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="bottom">
+    <span>&copy; 2026 Gregorius Peitra. All rights reserved.</span>
+    <span>Designed for academic collaboration</span>
+  </div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
