@@ -125,6 +125,49 @@
     footer .links a:hover { color: var(--navy); }
     footer .links a:hover svg { opacity: 1; }
     footer .bottom { max-width: 1100px; margin: 2rem auto 0; padding-top: 1.5rem; border-top: 1px solid var(--grey-200); display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--grey-400); }
+
+    /* MASTER THESIS CANVAS */
+    .thesis-title-banner { background: var(--navy); border-radius: 12px; padding: 2.5rem; margin-bottom: 2rem; text-align: center; }
+    .thesis-badge { display: inline-block; background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.3rem 0.85rem; border-radius: 999px; margin-bottom: 1rem; }
+    .thesis-title-banner h3 { font-family: var(--font-display); font-size: clamp(1.1rem, 2.5vw, 1.5rem); font-weight: 600; color: white; line-height: 1.4; margin-bottom: 1.25rem; max-width: 800px; margin-left: auto; margin-right: auto; }
+    .thesis-domain { display: flex; align-items: center; justify-content: center; gap: 0.75rem; flex-wrap: wrap; }
+    .domain-tag { font-size: 0.8rem; color: rgba(255,255,255,0.7); }
+    .domain-sep { color: rgba(255,255,255,0.3); }
+
+    .canvas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    @media (max-width: 900px) { .canvas-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .canvas-grid { grid-template-columns: 1fr; } }
+
+    .canvas-card { background: var(--grey-50); border: 1px solid var(--grey-200); border-radius: 12px; padding: 1.5rem; transition: box-shadow 0.25s, border-color 0.25s, transform 0.25s; }
+    .canvas-card:hover { box-shadow: 0 8px 32px rgba(26,39,68,0.08); border-color: var(--accent); transform: translateY(-2px); }
+    .canvas-card-header { font-family: var(--font-display); font-size: 0.85rem; font-weight: 600; color: var(--navy); margin-bottom: 0.85rem; display: flex; align-items: center; gap: 0.5rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--grey-200); }
+    .canvas-card-header svg { width: 16px; height: 16px; color: var(--accent); flex-shrink: 0; }
+    .canvas-card p { font-size: 0.825rem; color: var(--grey-600); line-height: 1.7; margin: 0; }
+
+    .canvas-theory .theory-list { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .canvas-theory .theory-list span { background: var(--white); border: 1px solid var(--grey-200); color: var(--grey-600); font-size: 0.7rem; padding: 0.25rem 0.6rem; border-radius: 4px; }
+    .canvas-theory .theory-list span:hover { border-color: var(--accent); color: var(--navy); }
+
+    .input-box { background: var(--white); border: 1px solid var(--grey-200); border-radius: 8px; padding: 0.85rem; margin-bottom: 0.75rem; }
+    .input-box:last-child { margin-bottom: 0; }
+    .input-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.35rem; }
+    .input-box p { font-size: 0.8rem; color: var(--grey-600); margin: 0; line-height: 1.5; }
+
+    .framework-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem; justify-content: center; }
+    .flow-step { background: var(--navy); color: white; font-size: 0.7rem; font-weight: 500; padding: 0.4rem 0.75rem; border-radius: 6px; text-align: center; line-height: 1.4; }
+    .flow-step span { display: inline-block; background: rgba(255,255,255,0.2); width: 18px; height: 18px; border-radius: 50%; font-size: 0.65rem; font-weight: 700; line-height: 18px; margin-right: 0.3rem; }
+    .flow-step small { display: block; font-size: 0.6rem; font-weight: 400; opacity: 0.75; margin-top: 0.15rem; }
+    .flow-arrow { color: var(--accent); font-size: 1rem; font-weight: 600; }
+
+    .method-phases { display: flex; flex-direction: column; gap: 0.5rem; }
+    .phase { display: flex; align-items: center; gap: 0.6rem; font-size: 0.8rem; color: var(--grey-700); }
+    .phase-num { background: var(--navy); color: white; width: 22px; height: 22px; border-radius: 50%; font-size: 0.7rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+    .contribution-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    @media (max-width: 500px) { .contribution-grid { grid-template-columns: 1fr; } }
+    .contrib-box { background: var(--white); border: 1px solid var(--grey-200); border-radius: 8px; padding: 1rem; }
+    .contrib-type { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.4rem; }
+    .contrib-box p { font-size: 0.78rem; color: var(--grey-600); line-height: 1.6; margin: 0; }
   </style>
 </head>
 <body>
@@ -155,11 +198,150 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
       Research Projects
     </p>
-    <h1>Ongoing &amp; Completed Work</h1>
-    <p>Academic and applied research projects spanning digital customer experience, AI-driven services, and sustainable consumption — from foundational models to industry applications.</p>
+    <h1>Academic Research Portfolio</h1>
+    <p>Spanning digital customer experience, AI-driven services, and sustainable consumption — from empirical studies to systematic literature reviews.</p>
   </div>
 </header>
+<div class="section-divider"></div>
 
+<!-- MASTER THESIS -->
+<section class="section">
+  <div class="inner">
+    <div class="subsection-header reveal">
+      <h2>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        Master Thesis
+      </h2>
+      <p>Research Model Canvas — doctoral-level research design for AI-enabled Customer Experience Management</p>
+    </div>
+
+    <!-- Thesis Title Banner -->
+    <div class="thesis-title-banner reveal">
+      <div class="thesis-badge">Master Thesis Research Design</div>
+      <h3>Operationalizing AI-enabled Customer Experience Management: Developing an Evidence-Based Framework for AI-enabled Products</h3>
+      <div class="thesis-domain">
+        <span class="domain-tag">Customer Experience Management</span>
+        <span class="domain-sep">•</span>
+        <span class="domain-tag">AI-enabled Products</span>
+        <span class="domain-sep">•</span>
+        <span class="domain-tag">Innovation Management</span>
+      </div>
+    </div>
+
+    <!-- Research Canvas Grid -->
+    <div class="canvas-grid">
+      <!-- Row 1 -->
+      <div class="canvas-card canvas-problem reveal">
+        <div class="canvas-card-header">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Research Problem
+        </div>
+        <p>Existing studies explain how Customer AI Experience is conceptualized and measured, but organizations still lack an operational approach for managing Customer Experience using empirical evidence.</p>
+      </div>
+      <div class="canvas-card canvas-gap reveal reveal-delay-1">
+        <div class="canvas-card-header">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          Research Gap
+        </div>
+        <p>Wang et al. (2024) focused on measurement, Li et al. (2025) on formation mechanisms, and Utami & Aimin (2026) on strategic synthesis. No study has yet integrated evaluation findings into an operational managerial process for AI-enabled Customer Experience Management.</p>
+      </div>
+      <div class="canvas-card canvas-objective reveal reveal-delay-2">
+        <div class="canvas-card-header">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          Research Objective
+        </div>
+        <p>To develop an Evidence-Based AI-enabled Customer Experience Management Framework that helps organizations systematically manage Customer Experience for AI-enabled Products.</p>
+      </div>
+
+      <!-- Row 2 - Theoretical Foundation -->
+      <div class="canvas-card canvas-theory reveal">
+        <div class="canvas-card-header">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          Theoretical Foundation
+        </div>
+        <div class="theory-list">
+          <span>Customer Experience Theory</span>
+          <span>Customer Experience Management</span>
+          <span>Customer AI Experience (Li et al., 2025)</span>
+          <span>AI-enabled CX Scale (Wang et al., 2024)</span>
+          <span>AI-enabled CX Management (Utami & Aimin, 2026)</span>
+          <span>Voice of Customer</span>
+          <span>Service-Dominant Logic</span>
+          <span>Continuous Improvement</span>
+        </div>
+      </div>
+
+      <!-- Row 3 - Inputs -->
+      <div class="canvas-card canvas-inputs reveal">
+        <div class="canvas-card-header">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          Research Inputs
+        </div>
+        <div class="input-box">
+          <div class="input-label">Paper 2 (SLR)</div>
+          <p>Knowledge base, evaluation approaches, managerial practices, research gaps</p>
+        </div>
+        <div class="input-box">
+          <div class="input-label">Paper 1 (Empirical)</div>
+          <p>NPS, CSAT, Voice of Customer, pain points, improvement opportunities</p>
+        </div>
+      </div>
+
+      <!-- Row 4 - Framework -->
+      <div class="canvas-card canvas-framework reveal reveal-delay-1">
+        <div class="canvas-card-header">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+          Framework Components (Proposed)
+        </div>
+        <div class="framework-flow">
+          <div class="flow-step"><span>1</span>AI-enabled CX Strategy</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step"><span>2</span>CX Evaluation<br/><small>(NPS, CSAT, VOC, Usage Analytics)</small></div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step"><span>3</span>CX Diagnosis</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step"><span>4</span>Improvement Prioritization</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step"><span>5</span>Product & Service Improvement</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step"><span>6</span>Continuous Monitoring & Learning</div>
+        </div>
+      </div>
+
+      <!-- Row 5 - Methodology -->
+      <div class="canvas-card canvas-method reveal">
+        <div class="canvas-card-header">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          Methodology
+        </div>
+        <div class="method-phases">
+          <div class="phase"><span class="phase-num">1</span>Systematic Literature Review</div>
+          <div class="phase"><span class="phase-num">2</span>Empirical Case Study (GipsyAI)</div>
+          <div class="phase"><span class="phase-num">3</span>Framework Development</div>
+          <div class="phase"><span class="phase-num">4</span>Expert Validation (Delphi/FGD/Expert Review)</div>
+        </div>
+      </div>
+
+      <!-- Row 6 - Contributions -->
+      <div class="canvas-card canvas-contribution reveal reveal-delay-1">
+        <div class="canvas-card-header">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          Expected Contributions
+        </div>
+        <div class="contribution-grid">
+          <div class="contrib-box">
+            <div class="contrib-type">Theoretical</div>
+            <p>To operationalize the concept of AI-enabled Customer Experience Management through an evidence-based framework.</p>
+          </div>
+          <div class="contrib-box">
+            <div class="contrib-type">Managerial</div>
+            <p>To provide practitioners with a practical guide for translating Customer Experience evaluation results into systematic and sustainable AI product improvement decisions.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <section class="section">
   <div class="inner">
     <!-- ONGOING RESEARCH -->
@@ -171,48 +353,74 @@
       <p>Active research projects currently in progress</p>
     </div>
     <div class="project-grid">
+      <!-- Paper 1: Empirical Study - GipsyAI -->
       <div class="project-card reveal">
         <div class="project-card-header">
           <h3>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-            Digital Customer Experience Framework
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4c0 1.1-.45 2.1-1.17 2.83L12 12l-2.83-3.17A4 4 0 0 1 12 2z"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
+            Understanding Customer Experience in AI Research Platforms: Evidence from GipsyAI Users
           </h3>
           <span class="project-status status-ongoing">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
             Ongoing
           </span>
         </div>
-        <p>Developing models explaining how digital touchpoints influence customer satisfaction and loyalty in emerging market contexts. The framework integrates service quality, technology acceptance, and customer journey perspectives.</p>
+        <p><strong>Topic:</strong> Empirical Customer Experience Evaluation on AI-enabled Research Platforms.</p>
+        <p style="margin-top:0.5rem;"><strong>Research Problem:</strong> AI-enabled research platforms have grown rapidly, yet most companies only evaluate AI technical performance, while systematic Customer Experience evaluation through Customer Satisfaction, Net Promoter Score, and Voice of Customer remains limited.</p>
+        <p style="margin-top:0.5rem;"><strong>Research Questions:</strong><br/>
+        RQ1: How do Customer Satisfaction and Net Promoter Score describe the overall Customer Experience of GipsyAI users?<br/>
+        RQ2: What are the major pain points experienced by GipsyAI users?<br/>
+        RQ3: What product improvement opportunities emerge from users' Voice of Customer?</p>
+        <p style="margin-top:0.5rem;"><strong>Contribution:</strong> To provide empirical evidence on Customer Experience for AI-enabled Research Platforms. This paper produces real-world Customer Experience evidence that will become one of the main inputs for the thesis.</p>
         <div class="project-meta">
-          <span class="meta-tag method"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>SEM-PLS</span>
-          <span class="meta-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/></svg>Digital Banking</span>
-          <span class="meta-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Customer Journey</span>
+          <span class="meta-tag method"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/></svg>Customer Survey</span>
+          <span class="meta-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4c0 1.1-.45 2.1-1.17 2.83L12 12"/></svg>NPS & CSAT</span>
+          <span class="meta-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Voice of Customer</span>
+          <span class="meta-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Thematic Analysis</span>
         </div>
+        <p style="margin-top:0.5rem;font-size:0.8rem;color:var(--grey-600);"><strong>Output:</strong> Customer Experience Profile, Customer Satisfaction, NPS, Pain Points, Improvement Opportunities</p>
+        <a href="#" onclick="return false;" style="display:inline-flex;align-items:center;gap:0.35rem;font-size:0.85rem;font-weight:600;color:var(--accent);margin-top:0.5rem;opacity:0.6;cursor:not-allowed;">
+          Read Draft <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          <span style="font-size:0.7rem;font-weight:500;background:var(--grey-200);color:var(--grey-600);padding:0.1rem 0.4rem;border-radius:3px;margin-left:0.25rem;">Coming Soon</span>
+        </a>
       </div>
+      <!-- Paper 2: Systematic Literature Review -->
       <div class="project-card reveal reveal-delay-1">
         <div class="project-card-header">
           <h3>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4c0 1.1-.45 2.1-1.17 2.83L12 12l-2.83-3.17A4 4 0 0 1 12 2z"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
-            AI Customer Experience
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            Measuring Customer Experience in AI-enabled Products: A Systematic Literature Review
           </h3>
           <span class="project-status status-ongoing">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
             Ongoing
           </span>
         </div>
-        <p>Investigating AI personalization, trust mechanisms, and customer engagement in AI-augmented service environments. Focus on chatbot performance, human-AI interaction quality, and trust formation in financial services.</p>
+        <p><strong>Research Domain:</strong> Customer Experience, AI-enabled Products, Customer Experience Measurement, Systematic Literature Review</p>
+        <p style="margin-top:0.5rem;"><strong>Research Background:</strong> The growth of AI-enabled Products has driven increasing research on Customer Experience. However, literature shows diverse approaches — Customer AI Experience Scale, NPS, CSAT, SUS, UEQ, CES, as well as qualitative methods like Voice of Customer and user review analysis. This diversity indicates no comprehensive methodological synthesis exists yet.</p>
+        <p style="margin-top:0.5rem;"><strong>Research Objective:</strong> To systematically review the existing literature to understand how Customer Experience has been measured and evaluated in AI-enabled Products.</p>
+        <p style="margin-top:0.5rem;"><strong>Research Questions:</strong><br/>
+        RQ1: How is Customer Experience evaluated in AI-enabled Products?<br/>
+        RQ2: What evaluation methods and metrics are commonly used?<br/>
+        RQ3: What methodological gaps remain in Customer Experience evaluation for AI-enabled Products?</p>
+        <p style="margin-top:0.5rem;"><strong>Research Scope:</strong> AI Chatbots, Generative AI, AI Research Platforms, AI Virtual Assistants, Recommendation Systems, AI Healthcare, AI Education, AI Financial Services, AI-powered Self-service Technologies, Intelligent IoT Systems</p>
         <div class="project-meta">
-          <span class="meta-tag method"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>SEM-PLS</span>
-          <span class="meta-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>AI Personalization</span>
-          <span class="meta-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Trust in AI</span>
+          <span class="meta-tag method"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/></svg>Systematic Literature Review</span>
+          <span class="meta-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/></svg>PRISMA 2020</span>
+          <span class="meta-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>Scopus</span>
+          <span class="meta-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4"/></svg>VOSviewer</span>
         </div>
+        <p style="margin-top:0.5rem;font-size:0.8rem;color:var(--grey-600);"><strong>Methodology:</strong> Descriptive Analysis • Bibliometric Mapping • Narrative Synthesis • Comparative Methodological Analysis</p>
+        <a href="#" onclick="return false;" style="display:inline-flex;align-items:center;gap:0.35rem;font-size:0.85rem;font-weight:600;color:var(--accent);margin-top:0.5rem;opacity:0.6;cursor:not-allowed;">
+          Read Draft <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          <span style="font-size:0.7rem;font-weight:500;background:var(--grey-200);color:var(--grey-600);padding:0.1rem 0.4rem;border-radius:3px;margin-left:0.25rem;">Coming Soon</span>
+        </a>
       </div>
     </div>
   </div>
 </section>
 
 <div class="section-divider"></div>
-
 <!-- COMPLETED RESEARCH -->
 <section class="section">
   <div class="inner">
@@ -229,7 +437,7 @@
         <div class="project-card-header">
           <h3>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-            Analisis Performa Chatbot Berdasarkan 20 Fitur pada Parameter Industri Perbankan di Indonesia
+            Chatbot Performance Analysis Based on 20 Features in Indonesian Banking Industry Parameters
           </h3>
           <span class="project-status status-complete">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
@@ -253,7 +461,7 @@
         <div class="project-card-header">
           <h3>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-            Pengaruh Volume dan Frekuensi Perdagangan terhadap Volatilitas Harga Saham pada Perusahaan Indeks LQ45
+            The Effect of Trading Volume and Frequency on Stock Price Volatility in LQ45 Index Companies
           </h3>
           <span class="project-status status-complete">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
@@ -277,7 +485,7 @@
         <div class="project-card-header">
           <h3>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            Implementasi Platform Digital sebagai Sumber Informasi di Yayasan Muhibbatul Qur'an Kamandoran
+            Digital Platform Implementation as an Information Source at Yayasan Muhibbatul Qur'an Kamandoran
           </h3>
           <span class="project-status status-complete">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
@@ -321,35 +529,6 @@
     </div>
   </div>
 </section>
-
-<div class="section-divider"></div>
-
-<!-- APPLIED RESEARCH -->
-<section class="section">
-  <div class="inner">
-    <div class="subsection-header reveal">
-      <h2>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-        Applied Research Lab
-      </h2>
-      <p>Practitioner-researcher approach connecting academic rigor with real-world business problems</p>
-    </div>
-    <div class="standout-card reveal">
-      <h3>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-        Gipsy Research Applied Research Lab
-      </h3>
-      <p>Using a practitioner-researcher approach to connect academic research with real-world business problems. Gipsy Research focuses on statistical analysis, research consulting, academic education, and AI-powered research solutions — serving as a bridge between theoretical frameworks and operational business challenges.</p>
-      <div class="standout-tags">
-        <span class="standout-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Statistical Analysis</span>
-        <span class="standout-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg>Research Consulting</span>
-        <span class="standout-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>Academic Education</span>
-        <span class="standout-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4c0 1.1-.45 2.1-1.17 2.83L12 12l-2.83-3.17A4 4 0 0 1 12 2z"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>AI-Powered Research</span>
-      </div>
-    </div>
-  </div>
-</section>
-
 <footer>
   <div class="inner">
     <div class="brand">
